@@ -36,7 +36,7 @@ Module[
 	(* else *),
 		Print["Installing dependencies:"];
 		Get[
-			"https://raw.githubusercontent.com/jkuczm/MathematicaOptionsUtilities/master/BootstrapInstall.m"
+			"https://raw.githubusercontent.com/jkuczm/MathematicaOptionsUtilities/v0.1.0/BootstrapInstall.m"
 		];
 		
 		Print["Installing EvaluationUtilities:"];
