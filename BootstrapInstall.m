@@ -1,47 +1,24 @@
 (* ::Package:: *)
 
-Module[
-	{$PIImportResult}
-	,
-	
-	Quiet[
-		$PIImportResult = Needs["ProjectInstaller`"],
-		{Get::noopen, Needs::nocont}
-	];
-	
-	If[$PIImportResult === $Failed,
-		Print["ProjectInstaller not found, installing it:"];
-		Print @ Import[
-			"https://raw.github.com/lshifr/ProjectInstaller/master/BootstrapInstall.m"
-		];
-		$PIImportResult = Needs["ProjectInstaller`"];
-	];
+Get["https://raw.githubusercontent.com/jkuczm/MathematicaBootstrapInstaller/v0.1.1/BootstrapInstaller.m"]
 
-	If[$PIImportResult === $Failed,
-		Print[
-			"Unable to load ProjectInstaller.\n",
-			"Please ",
+
+BootstrapInstall[
+	"EvaluationUtilities",
+	"https://github.com/jkuczm/MathematicaEvaluationUtilities/releases/download/v0.1.0/EvaluationUtilities.zip"
+	,
+	{{
+		"OptionsUtilities",
+		"https://github.com/jkuczm/MathematicaOptionsUtilities/releases/download/v0.1.0/OptionsUtilities.zip"
+	}}
+	,
+	"AdditionalFailureMessage" ->
+		Sequence[
+			"You can ",
 			Hyperlink[
 				"install EvaluationUtilities package manually",
 				"https://github.com/jkuczm/MathematicaEvaluationUtilities#manual-installation"
 			],
-			".\n",
-			"We would be grateful for ",
-			Hyperlink[
-				"reporting this issue",
-				"https://github.com/jkuczm/MathematicaEvaluationUtilities/issues"
-			],
 			"."
-		];
-	(* else *),
-		Print["Installing dependencies:"];
-		Get[
-			"https://raw.githubusercontent.com/jkuczm/MathematicaOptionsUtilities/v0.1.0/BootstrapInstall.m"
-		];
-		
-		Print["Installing EvaluationUtilities:"];
-		Print @ ProjectInstaller`ProjectInstall @ URL[
-			"https://github.com/jkuczm/MathematicaEvaluationUtilities/releases/download/v0.1.0/EvaluationUtilities.zip"
-		];
-	];
+		]
 ]
