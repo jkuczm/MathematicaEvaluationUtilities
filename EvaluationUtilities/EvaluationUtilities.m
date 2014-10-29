@@ -147,7 +147,7 @@ SetAttributes[EvaluateOneStep, HoldAll]
 EvaluateOneStep[expr_] :=
 	Module[
 		{P}
-		, 
+		,
 		P = (P = Return[#, TraceScan] &) &;
 		TraceScan[P, expr, TraceDepth -> 1]
 	]
